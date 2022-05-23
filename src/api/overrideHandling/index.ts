@@ -1,13 +1,13 @@
-import { insertOverrideMaps } from './overrideMapInsertion';
-import { fireChangeEvent, fireInitEvent } from './events';
+import { insertOverrideMaps } from '../overrideMapInsertion';
+import { fireChangeEvent, fireInitEvent } from '../events';
 import {
   ImportMap,
   importMapMetaElement,
   moduleNameToLocalStorageKey,
-} from './utils';
-import { getOverrideMap } from './overrideMap';
-import { DISABLED_OVERRIDES_KEY, enableOverride } from './disabledOverrides';
-import { EXTERNAL_OVERRIDES_KEY } from './externalOverrides';
+} from '../utils';
+import { getOverrideMap } from '../overrideMap';
+import { DISABLED_OVERRIDES_KEY, enableOverride } from '../disabledOverride';
+import { EXTERNAL_OVERRIDES_KEY } from '../externalOverrides';
 
 const serverOverrides = !!importMapMetaElement?.hasAttribute('server-cookie');
 

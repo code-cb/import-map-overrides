@@ -1,5 +1,5 @@
-import { fireChangeEvent } from './events';
-import { IMO } from './utils';
+import { fireChangeEvent } from '../events';
+import { IMO } from '../utils';
 
 export const DISABLED_OVERRIDES_KEY = `${IMO}-disabled` as const;
 

@@ -1,4 +1,4 @@
-import { IMO } from './utils';
+import { IMO } from '../utils';
 
 const pendingEvents: string[] = [];
 
