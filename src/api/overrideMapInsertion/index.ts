@@ -1,5 +1,5 @@
-import { getExternalOverrides } from './externalOverrides';
-import { getInitialOverrideMap } from './overrideMap';
+import { getExternalOverrides } from '../externalOverrides';
+import { getInitialOverrideMap } from '../overrideMap';
 import {
   ImportMap,
   mergeImportMap,
@@ -8,7 +8,7 @@ import {
   OVERRIDABLE_IMPORTMAP,
   importMapType,
   parseImportMap,
-} from './utils';
+} from '../utils';
 
 const getLastImportMapScript = () => {
   const scripts = document.querySelectorAll<HTMLScriptElement>(
