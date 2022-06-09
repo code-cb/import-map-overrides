@@ -1,3 +1,0 @@
-{
-  "extends": "@codecb/tsconfigs/tsconfig.browser-lib"
-}

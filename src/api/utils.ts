@@ -1,9 +1,9 @@
 import escapeStringRegexp from 'escape-string-regexp';
+import { IMO, ImportMap } from '../shared';
 
-export const IMO = 'import-map-overrides';
-const LOCAL_STORAGE_PREFIX = `${IMO}:`;
+export const IMOs = `${IMO}s`;
 export const OVERRIDABLE_IMPORTMAP = 'overridable-importmap';
-export const OVERRIDES_ATTR = `data-is-${IMO}` as const;
+export const OVERRIDES_ATTR = `data-is-${IMOs}` as const;
 
 export const importMapMetaElement = document.querySelector(
   'meta[name="importmap-type"]',
@@ -21,11 +21,6 @@ const canAccessLocalStorage = () => {
   }
 };
 
-export interface ImportMap {
-  imports: Record<string, string>;
-  scopes: Record<string, Record<string, string>>;
-}
-
 export const createEmptyImportMap = (): ImportMap => ({
   imports: {},
   scopes: {},
@@ -34,7 +29,7 @@ export const createEmptyImportMap = (): ImportMap => ({
 export const isImportMapOverridesDisabled = () => {
   if (!canAccessLocalStorage()) return true;
 
-  const domainsMeta = `${IMO}-domains` as const;
+  const domainsMeta = `${IMOs}-domains` as const;
   const domainsElement = document.querySelector(`meta[name="${domainsMeta}"]`);
   if (!domainsElement) return false;
 
@@ -62,11 +57,6 @@ export const isImportMapOverridesDisabled = () => {
   return false;
 };
 
-export const localStorageKeyToModuleName = (key: string) =>
-  key.startsWith(LOCAL_STORAGE_PREFIX)
-    ? key.substring(LOCAL_STORAGE_PREFIX.length)
-    : null;
-
 export const matchHostname = (domain: string) =>
   new RegExp(escapeStringRegexp(domain).replace('\\*', '.+')).test(
     window.location.hostname,
@@ -82,9 +72,6 @@ export const mergeImportMap = (originalMap: ImportMap, newMap: ImportMap) => ({
     ...newMap.scopes,
   },
 });
-
-export const moduleNameToLocalStorageKey = (moduleName: string) =>
-  `${LOCAL_STORAGE_PREFIX}${moduleName}`;
 
 export const parseJson = <T>(json: string, errorMessage: string) => {
   try {

@@ -1,16 +1,16 @@
+import { ImportMap } from '../../shared';
 import { fireChangeEvent } from '../events';
 import {
   createEmptyImportMap,
-  ImportMap,
   mergeImportMap,
-  IMO,
+  IMOs,
   OVERRIDES_ATTR,
 } from '../utils';
 import { fetchExternalMap } from './fetchExternalMap';
 
 export { fetchExternalMap, isExternalMapValid } from './fetchExternalMap';
 
-export const EXTERNAL_OVERRIDES_KEY = `${IMO}-external-maps` as const;
+export const EXTERNAL_OVERRIDES_KEY = `${IMOs}-external-maps` as const;
 
 export const getExternalOverrides = (): string[] => {
   const externalOverrides = localStorage.getItem(EXTERNAL_OVERRIDES_KEY);
@@ -56,6 +56,6 @@ export const getExternalOverrideMap = async (
 export const getCurrentPageExternalOverrides = (): string[] =>
   Array.from(
     document.querySelectorAll<HTMLScriptElement>(
-      `script[${OVERRIDES_ATTR}]:not([id="${IMO}"])`,
+      `script[${OVERRIDES_ATTR}]:not([id="${IMOs}"])`,
     ),
   ).map(script => script.src);

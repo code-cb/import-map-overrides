@@ -1,4 +1,4 @@
-import { IMO } from '../utils';
+import { IMOs } from '../utils';
 
 const pendingEvents: string[] = [];
 
@@ -7,7 +7,7 @@ const fireEvent = (type: string) => {
   pendingEvents.push(type);
   // Set timeout so that event fires after the change has completely finished.
   setTimeout(() => {
-    window.dispatchEvent(new CustomEvent<void>(`${IMO}:${type}`));
+    window.dispatchEvent(new CustomEvent<void>(`${IMOs}:${type}`));
     pendingEvents.splice(pendingEvents.indexOf(type), 1);
   });
 };

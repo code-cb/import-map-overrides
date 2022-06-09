@@ -1,4 +1,5 @@
-import { createEmptyImportMap, ImportMap } from '../utils';
+import { ImportMap } from '../../shared';
+import { createEmptyImportMap } from '../utils';
 
 type FetchImportMapResult =
   | {

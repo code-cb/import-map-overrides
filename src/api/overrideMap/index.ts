@@ -1,8 +1,9 @@
+import { ImportMap } from '../../shared';
 import {
   getCurrentPageExternalOverrides,
   getExternalOverrideMap,
 } from '../externalOverrides';
-import { ImportMap, mergeImportMap } from '../utils';
+import { mergeImportMap } from '../utils';
 import { getDefaultMap } from './getDefaultMap';
 import { getInitialOverrideMap } from './getInitialOverrideMap';
 import { getOverrideMap } from './getOverrideMap';

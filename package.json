@@ -8,24 +8,48 @@
   "files": [
     "dist"
   ],
+  "exports": {
+    "./server": {
+      "import": "./dist/server.mjs",
+      "require": "./dist/server.cjs"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "server": [
+        "./dist/server.d.mts"
+      ]
+    }
+  },
   "scripts": {
     "build": "rollup -c rollup.config.ts --configPlugin rollup-plugin-ts",
-    "build:watch": "yarn build -w",
-    "format": "prettier --write 'src/**/*.ts'"
+    "dev:build": "yarn build -w",
+    "format": "prettier --write 'src/**/*.ts'",
+    "prepublishOnly": "yarn build",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "escape-string-regexp": "^5.0.0",
-    "preact": "^10.7.2"
+    "preact": "^10.7.3"
   },
   "devDependencies": {
-    "@codecb/tsconfigs": "^0.0.2",
-    "@types/node": "^16.11.36",
+    "@babel/core": "^7.18.2",
+    "@babel/plugin-transform-react-jsx": "^7.17.12",
+    "@babel/preset-env": "^7.18.2",
+    "@codecb/tsconfigs": "^0.0.4",
+    "@rollup/plugin-babel": "^5.3.1",
+    "@types/cookie": "^0.5.1",
+    "@types/node": "^16.11.38",
+    "cookie": "^0.5.0",
+    "postcss": "^8.4.14",
     "prettier": "^2.6.2",
-    "rollup": "^2.73.0",
-    "rollup-plugin-ts": "2.0.7",
-    "typescript": "^4.6.4"
+    "rollup": "^2.75.5",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-ts": "^3.0.1",
+    "typescript": "^4.7.3"
   },
   "engines": {
-    "node": "16.13.1"
+    "node": ">=16.0.0"
   }
 }
