@@ -1,7 +1,7 @@
+import { ImportMap } from '../../shared';
 import { fetchExternalMap } from '../externalOverrides';
 import {
   createEmptyImportMap,
-  ImportMap,
   importMapType,
   mergeImportMap,
   OVERRIDABLE_IMPORTMAP,

@@ -1,5 +1,6 @@
+import { ImportMap, storageKeyToModuleName } from '../../shared';
 import { getDisabledOverrides } from '../disabledOverride';
-import { ImportMap, localStorageKeyToModuleName, parseJson } from '../utils';
+import { parseJson } from '../utils';
 
 const QUERY_PARAM_OVERRIDE_NAME = 'imo';
 
@@ -15,7 +16,7 @@ const getLocalStorageOverrides = (
 ) =>
   Object.fromEntries(
     Object.keys(localStorage).flatMap<[string, string]>(key => {
-      const moduleName = localStorageKeyToModuleName(key);
+      const moduleName = storageKeyToModuleName(key);
       return moduleName &&
         isModuleIncluded(moduleName, disabledOverrides, includeDisabled)
         ? [[moduleName, localStorage.getItem(key)!]]

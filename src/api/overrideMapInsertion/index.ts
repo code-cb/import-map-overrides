@@ -1,9 +1,9 @@
+import { ImportMap } from '../../shared';
 import { getExternalOverrides } from '../externalOverrides';
 import { getInitialOverrideMap } from '../overrideMap';
 import {
-  ImportMap,
   mergeImportMap,
-  IMO,
+  IMOs,
   OVERRIDES_ATTR,
   OVERRIDABLE_IMPORTMAP,
   importMapType,
@@ -41,7 +41,7 @@ const insertExternalOverrideMaps = (
   let refNode = referenceNode;
   const externalOverrides = getExternalOverrides();
   externalOverrides.forEach((mapUrl, index) => {
-    refNode = insertOverrideMap(mapUrl, `${IMO}-external-${index}`, refNode);
+    refNode = insertOverrideMap(mapUrl, `${IMOs}-external-${index}`, refNode);
   });
   return refNode;
 };
@@ -66,7 +66,7 @@ export const insertOverrideMaps = () => {
     const initialOverrideMap = getInitialOverrideMap();
     referenceNode = insertOverrideMap(
       mergeImportMap(originalMap, initialOverrideMap),
-      IMO,
+      IMOs,
       referenceNode,
     );
     referenceNode = insertExternalOverrideMaps(referenceNode);
@@ -74,7 +74,11 @@ export const insertOverrideMaps = () => {
     referenceNode = insertExternalOverrideMaps(referenceNode);
     const initialOverrideMap = getInitialOverrideMap();
     if (Object.keys(initialOverrideMap.imports).length > 0) {
-      referenceNode = insertOverrideMap(initialOverrideMap, IMO, referenceNode);
+      referenceNode = insertOverrideMap(
+        initialOverrideMap,
+        IMOs,
+        referenceNode,
+      );
     }
   }
 };

@@ -1,7 +1,7 @@
 import { fireChangeEvent } from '../events';
-import { IMO } from '../utils';
+import { IMOs } from '../utils';
 
-export const DISABLED_OVERRIDES_KEY = `${IMO}-disabled` as const;
+export const DISABLED_OVERRIDES_KEY = `${IMOs}-disabled` as const;
 
 export const getDisabledOverrides = (): string[] => {
   const disabledOverrides = localStorage.getItem(DISABLED_OVERRIDES_KEY);

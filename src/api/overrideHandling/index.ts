@@ -1,25 +1,21 @@
+import {
+  getUrlFromPort,
+  ImportMap,
+  isPort,
+  moduleNameToStorageKey,
+} from '../../shared';
 import { insertOverrideMaps } from '../overrideMapInsertion';
 import { fireChangeEvent, fireInitEvent } from '../events';
-import {
-  ImportMap,
-  importMapMetaElement,
-  moduleNameToLocalStorageKey,
-} from '../utils';
+import { importMapMetaElement } from '../utils';
 import { getOverrideMap } from '../overrideMap';
 import { DISABLED_OVERRIDES_KEY, enableOverride } from '../disabledOverride';
 import { EXTERNAL_OVERRIDES_KEY } from '../externalOverrides';
 
 const serverOverrides = !!importMapMetaElement?.hasAttribute('server-cookie');
 
-export const getUrlFromPort = (moduleName: string, port: string): string => {
-  const fileName = moduleName.replace(/@/g, '').replace(/\//g, '-');
-  return `//localhost:${port}/${fileName}.js`;
-};
-
 export const addOverride = (moduleName: string, url: string): ImportMap => {
-  const isPort = /^\d+$/.test(url);
-  const fullUrl = isPort ? getUrlFromPort(moduleName, url) : url;
-  const key = moduleNameToLocalStorageKey(moduleName);
+  const fullUrl = isPort(url) ? getUrlFromPort(moduleName, url) : url;
+  const key = moduleNameToStorageKey(moduleName);
   localStorage.setItem(key, fullUrl);
   if (serverOverrides) document.cookie = `${key}=${fullUrl}`;
   fireChangeEvent();
@@ -27,7 +23,7 @@ export const addOverride = (moduleName: string, url: string): ImportMap => {
 };
 
 export const removeOverride = (moduleName: string): boolean => {
-  const key = moduleNameToLocalStorageKey(moduleName);
+  const key = moduleNameToStorageKey(moduleName);
   // TODO: should we return here???
   if (!localStorage.getItem(key)) return false;
   localStorage.removeItem(key);

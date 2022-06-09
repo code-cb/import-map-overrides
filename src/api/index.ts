@@ -1,6 +1,5 @@
 import {
   addOverride,
-  getUrlFromPort,
   init,
   removeOverride,
   resetOverrides,
@@ -14,7 +13,6 @@ const getApi = () =>
     addOverride,
     enableUi,
     getOverrideMap,
-    getUrlFromPort,
     hasOverrides,
     removeOverride,
     resetOverrides,

@@ -1,6 +1,6 @@
-import { IMO } from './utils';
+import { IMOs } from '../utils';
 
-const CUSTOM_ELEMENT_NAME = `${IMO}-full`;
+const CUSTOM_ELEMENT_NAME = `${IMOs}-full`;
 const SHOW_WHEN_LOCAL_STORAGE = `show-when-local-storage`;
 
 const createCustomElement = () => {
@@ -17,6 +17,6 @@ export const enableUi = (): void => {
   if (localStorageKey) {
     localStorage.setItem(localStorageKey, 'true');
     // TODO: where is renderWithPreact from???
-    customElement.renderWithPreact();
+    // customElement.renderWithPreact();
   }
 };
